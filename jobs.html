@@ -5,6 +5,13 @@
   <title>Jobs - Work Finder</title>
   <link rel="stylesheet" href="style.css">
 </head>
+  <script>
+  if (!localStorage.getItem("registeredUser")) {
+    alert("Please register first before accessing jobs.");
+    window.location.href = "index.html";
+  }
+</script>
+
 <body>
   <header>
     <nav>
