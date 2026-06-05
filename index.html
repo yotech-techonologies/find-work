@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Work Finder - Home</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -25,10 +24,10 @@
     <a href="jobs.html" id="jobsLink" class="btn">Browse Jobs</a>
   </section>
 
-  <!-- Registration Form connected to Formspree -->
+  <!-- Registration Form -->
   <section class="content">
     <h2>Register to Access Jobs</h2>
-    <form id="registerForm" action="https://formspree.io/f/xpqewnwz" method="POST">
+    <form id="registerForm" action="https://formsubmit.co/yotechtechnologies@gmail.com" method="POST">
       <label for="name">Full Name:</label>
       <input type="text" name="name" id="name" required>
 
@@ -41,6 +40,11 @@
         <option value="find">Find Work</option>
         <option value="post">Post Work</option>
       </select>
+
+      <!-- Hidden fields -->
+      <input type="hidden" name="_next" value="https://yourdomain.com/jobs.html">
+      <input type="hidden" name="_subject" value="New Registration on Work Finder">
+      <input type="hidden" name="_captcha" value="false">
 
       <button type="submit">Register</button>
     </form>
