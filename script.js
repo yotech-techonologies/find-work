@@ -1,4 +1,20 @@
-// Load Jobs page content based on role
+// Prevent Jobs access until registered
+document.getElementById("jobsLink")?.addEventListener("click", e => {
+  if (!localStorage.getItem("registeredUser")) {
+    e.preventDefault();
+    alert("Please register first before accessing jobs.");
+  }
+});
+
+// Save registration locally after FormSubmit submission
+document.getElementById("registerForm")?.addEventListener("submit", e => {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const role = document.getElementById("role").value;
+  localStorage.setItem("registeredUser", JSON.stringify({ name, email, role }));
+});
+
+// Role‑based Jobs page
 const jobsContent = document.getElementById("jobsContent");
 const userData = localStorage.getItem("registeredUser");
 
@@ -6,7 +22,6 @@ if (jobsContent && userData) {
   const user = JSON.parse(userData);
 
   if (user.role === "find") {
-    // Show job listings
     jobsContent.innerHTML = `
       <h2>Available Jobs</h2>
       <ul class="job-list">
@@ -16,10 +31,9 @@ if (jobsContent && userData) {
       </ul>
     `;
   } else if (user.role === "post") {
-    // Show job posting form connected to Formspree
     jobsContent.innerHTML = `
       <h2>Post a New Job</h2>
-      <form id="postJobForm" action="https://formspree.io/f/xpqewnwz" method="POST">
+      <form action="https://formsubmit.co/yotechtechnologies@gmail.com" method="POST">
         <label for="title">Job Title:</label>
         <input type="text" name="title" id="title" required>
 
@@ -28,6 +42,11 @@ if (jobsContent && userData) {
 
         <label for="description">Description:</label>
         <textarea name="description" id="description" required></textarea>
+
+        <!-- Hidden fields -->
+        <input type="hidden" name="_next" value="https://yourdomain.com/jobs.html">
+        <input type="hidden" name="_subject" value="New Job Posting on Work Finder">
+        <input type="hidden" name="_captcha" value="false">
 
         <button type="submit">Submit Job</button>
       </form>
