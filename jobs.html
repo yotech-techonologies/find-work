@@ -4,14 +4,16 @@
   <meta charset="UTF-8">
   <title>Jobs - Work Finder</title>
   <link rel="stylesheet" href="style.css">
-</head>
-  <script>
-  if (!localStorage.getItem("registeredUser")) {
-    alert("Please register first before accessing jobs.");
-    window.location.href = "index.html";
-  }
-</script>
 
+  <!-- Access control script -->
+  <script>
+    const user = localStorage.getItem("registeredUser");
+    if (!user) {
+      alert("Please register first before accessing jobs.");
+      window.location.href = "index.html";
+    }
+  </script>
+</head>
 <body>
   <header>
     <nav>
@@ -25,17 +27,14 @@
     </nav>
   </header>
 
-  <section class="content">
-    <h2>Available Jobs</h2>
-    <ul class="job-list">
-      <li><strong>Software Engineer</strong> - Remote</li>
-      <li><strong>Marketing Specialist</strong> - Lagos, Nigeria</li>
-      <li><strong>Data Analyst</strong> - London, UK</li>
-    </ul>
+  <section class="content" id="jobsContent">
+    <!-- Content will be injected by script.js -->
   </section>
 
   <footer>
     <p>&copy; 2026 Work Finder. All rights reserved.</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
